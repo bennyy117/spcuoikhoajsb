@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mau2</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Lora:400,400i,700");
+      @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap');
+      body {
+        margin: 0;
+        text-align:center;
+      }
+      
+      .container {
+        position: relative;
+        height: 100vh;
+        font-family: Lora, serif;
+        color: white;
+      }
+      .container h1 {
+        margin: 0;
+        font-size: 250%;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-shadow: 0 2px 2px black;
+      }
+      .container h3 {
+        margin: 0;
+        letter-spacing: 0.2em;
+        text-shadow: 0 2px 2px black;
+      }
+      .container .page-title {
+        position: absolute;
+        left: 4em;
+        top: 2em;
+        z-index: 1;
+      }
+      .container .slideshow {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .container .slideshow .slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+      }
+      .container .slideshow .slide:first-child {
+        z-index: 0;
+      }
+      .container .slideshow .slide:nth-child(1) {
+        background: url("https://i.pinimg.com/564x/36/89/cd/3689cd5e4055b10962c6c71cf6c10f25.jpg") center/cover no-repeat;
+      }
+      .container .slideshow .slide:nth-child(2) {
+        background: url("https://i.pinimg.com/564x/f9/14/0f/f9140f2cbc6858af486b5a2abfdd492f.jpg") center/cover no-repeat;
+      }
+      .container .slideshow .slide:nth-child(3) {
+        background: url("https://i.pinimg.com/564x/13/f8/46/13f846eaa567c8dc778712a12b9ac15b.jpg") center/cover no-repeat;
+      }
+      .container .slideshow .slide:nth-child(4) {
+        background: url("https://i.pinimg.com/564x/72/a6/7d/72a67dcbf9dd6e7322520cf76fe7d020.jpg") center/cover no-repeat;
+      }
+      .container .slideshow .slide:nth-child(5) {
+        background: url("https://i.pinimg.com/564x/f4/1d/5e/f41d5eee5289c5cb0dda037b5b0efce7.jpg") center/cover no-repeat;
+      }
+      .container .slideshow .slide .slide-title {
+        position: absolute;
+        top: 40vh;
+        left: 2em;
+      }
+      .container .bars {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+      }
+      .container .bars .bar {
+        flex: 1;
+        background: #111;
+        transform: scaleY(0);
+        transform-origin: top;
+      }
+      .container .nav-dots {
+        position: absolute;
+        left: 2em;
+        bottom: 4em;
+        z-index: 1;
+        display: flex;
+        margin: 0;
+        list-style-type: none;
+      }
+      .container .nav-dots .dot {
+        width: 1em;
+        height: 1em;
+        margin: 1em;
+      }
+      .container .nav-dots .dot a {
+        position: relative;
+        display: block;
+        height: 1em;
+        line-height: 1em;
+      }
+      .container .nav-dots .dot a::before {
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.4);
+        border-radius: 50%;
+      }
+      .container .nav-dots .dot a:hover::before {
+        background: rgba(255, 255, 255, 0.6);
+      }
+      .container .nav-dots .dot a.active::before {
+        background: rgba(255, 255, 255, 0.8);
+      }
+      
+      /* nút công cụ */
+      @import url("https://fonts.googleapis.com/css?family=Raleway");
+      * {
+        box-sizing: border-box;
+      }
+      
+      .nut {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 75px;
+        margin-bottom: 75px;
+      }
+      
+      .button {
+        position: relative;
+        padding: 1em 1.5em;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        outline: none;
+        font-size: 18px;
+        margin: 16px 12.8px;
+      }
+      
+      .button.type3 {
+        color: #435a6b;
+      }
+      .button.type3.type3::after, .button.type3.type3::before {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 20%;
+        height: 20%;
+        border: 2px solid;
+        transition: all 0.6s ease;
+        border-radius: 2px;
+      }
+      .button.type3.type3::after {
+        bottom: 0;
+        right: 0;
+        border-top-color: transparent;
+        border-left-color: transparent;
+        border-bottom-color: #435a6b;
+        border-right-color: #435a6b;
+      }
+      .button.type3.type3::before {
+        top: 0;
+        left: 0;
+        border-bottom-color: transparent;
+        border-right-color: transparent;
+        border-top-color: #435a6b;
+        border-left-color: #435a6b;
+      }
+      .button.type3.type3:hover:after, .button.type3.type3:hover:before {
+        border-bottom-color: #435a6b;
+        border-right-color: #435a6b;
+        border-top-color: #435a6b;
+        border-left-color: #435a6b;
+        width: 100%;
+        height: 100%;
+      }
+      #myDIV {
+        width: 50px;
+        padding: 0px;
+        text-align: center;
+        height: 20px;
+        background: white;
+        margin-left: 20px;
+        margin-bottom: 30px;
+        display: inline-block;
+      }
+      .nut1 {
+        display: flex;
+        flex-direction: column;
+      }
+      
+      /* chữ cạnh nút công cụ */
+      @keyframes filling {
+        from{
+          background-position: center 25%;
+        }
+        to {
+          background-position: center 50%;
+        }
+      }
+      
+      .container-text {
+        text-align: center;
+        background-image:  url(https://i.pinimg.com/474x/22/29/3c/22293c17a924ebc571737709a3b96124.jpg);
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+        color:  #FFFFFF;
+        padding-top: 20px;
+        font-size: 50px;
+        font-family: 'Josefin Sans', sans-serif;
+        animation: filling 3s ease forwards;
+        margin-left: 125px;
+      }
+      @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+      .container-text-span {
+        font-family: 'Josefin Sans', sans-serif;
+      }
+      
+      /* nút contact */
+      .contact {
+        text-align: center;
+        margin-top: 12.8px;
+      }
+      
+      .btn {
+        display: inline-block;
+        background-color: transparent;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        color: #000000;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        height: 50px;
+        line-height: 50px;
+        margin-right: 25px;
+        padding: 0 50px;
+        border: none;
+        border-right: 1px solid #000000;
+        position: relative;
+        transition: color 0.2s ease-in-out 0s;
+      }
+      .btna {
+        text-decoration: none;
+        color: #000000;
+      }
+      .btna:before, .btna:after {
+        content: "";
+        position: absolute;
+        top: 0;
+      }
+      .btna:before {
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #ffffff;
+        z-index: -1;
+      }
+      .btna:after {
+        right: -1px;
+        width: 1px;
+        height: 50px;
+        background-color: #000000;
+        transform: rotate(-90deg);
+        transform-origin: center;
+        z-index: 0;
+        transition: width 0.3s ease-in-out, transform 0.2s ease-in-out 0.3s, z-index 0.15s ease-in-out;
+      }
+      .btna:hover {
+        color: #ffffff;
+        transition: color 0.2s ease-in-out 0.25s;
+      }
+      .btna:hover:after {
+        z-index: -1;
+        transform: rotate(0deg);
+        width: 100%;
+        transition: transform 0.2s ease-in-out, width 0.3s ease-in-out 0.2s;
+      }
+      
+      /* phần thân */
+      figure.snip0016 {
+        font-family: 'Josefin Sans', sans-serif;
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+        margin: 10px;
+        min-width: 220px;
+        max-width: 310px;
+        max-height: 220px;
+        width: 100%;
+        background: #000000;
+        text-align: left;
+      }
+      figure.snip0016 * {
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+      figure.snip0016 img {
+        margin-bottom: -5px;
+        max-width: 100%;
+        opacity: 1;
+        width: 100%;
+        -webkit-transition: opacity 0.35s;
+        transition: opacity 0.35s;
+      }
+      figure.snip0016 figcaption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        padding: 30px 3em;
+        width: 100%;
+        height: 100%;
+      }
+      figure.snip0016 figcaption::before {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        bottom: 30px;
+        left: 100%;
+        border-left: 4px solid rgba(255, 255, 255, 0.8);
+        content: '';
+        opacity: 0;
+        background-color: rgba(255, 255, 255, 0.5);
+        -webkit-transition: all 0.5s;
+        transition: all 0.5s;
+        -webkit-transition-delay: 0.6s;
+        transition-delay: 0.6s;
+      }
+      figure.snip0016 h2,
+      figure.snip0016 p {
+        margin: 0 0 5px;
+        opacity: 0;
+        -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+        transition: opacity 0.35s,-webkit-transform 0.35s,-moz-transform 0.35s,-o-transform 0.35s,transform 0.35s;
+      }
+      figure.snip0016 h2 {
+        word-spacing: -0.15em;
+        font-weight: 300;
+        text-transform: uppercase;
+        -webkit-transform: translate3d(30%, 0%, 0);
+        transform: translate3d(30%, 0%, 0);
+        -webkit-transition-delay: 0.3s;
+        transition-delay: 0.3s;
+      }
+      figure.snip0016 h2 span {
+        font-weight: 800;
+      }
+      figure.snip0016 p {
+        font-weight: 200;
+        -webkit-transform: translate3d(0%, 30%, 0);
+        transform: translate3d(0%, 30%, 0);
+        -webkit-transition-delay: 0s;
+        transition-delay: 0s;
+      }
+      figure.snip0016 a {
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        position: absolute;
+        color: #ffffff;
+      }
+      figure.snip0016:hover img {
+        opacity: 0.3;
+      }
+      figure.snip0016:hover figcaption h2 {
+        opacity: 1;
+        -webkit-transform: translate3d(0%, 0%, 0);
+        transform: translate3d(0%, 0%, 0);
+        -webkit-transition-delay: 0.4s;
+        transition-delay: 0.4s;
+      }
+      figure.snip0016:hover figcaption p {
+        opacity: 0.9;
+        -webkit-transform: translate3d(0%, 0%, 0);
+        transform: translate3d(0%, 0%, 0);
+        -webkit-transition-delay: 0.6s;
+        transition-delay: 0.6s;
+      }
+      figure.snip0016:hover figcaption::before {
+        background: rgba(255, 255, 255, 0);
+        left: 30px;
+        opacity: 1;
+        -webkit-transition-delay: 0s;
+        transition-delay: 0s;
+      }
+      
+      html {
+        height: 100%;
+      }
+      .than1 {
+        display: flex;
+        justify-content: center;
+      }
+      .than2 {
+        display: flex;
+        justify-content: center;
+      }
+
+      /* chân trang */
+      @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,500,300,700);
+
+      * {
+        font-family: 'Josefin Sans', sans-serif;
+      }
+
+      .footer-distributed{
+          background: #666;
+          box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+          box-sizing: border-box;
+          width: 100%;
+          text-align: left;
+          font: bold 16px sans-serif;
+          padding: 55px 50px;
+      }
+
+      .footer-distributed .footer-left,
+      .footer-distributed .footer-center,
+      .footer-distributed .footer-right{
+          display: inline-block;
+          vertical-align: top;
+      }
+
+      /* Footer left */
+
+      .footer-distributed .footer-left{
+          width: 40%;
+      }
+
+      /* The company logo */
+
+      .footer-distributed h3{
+          color:  #ffffff;
+          font: normal 36px 'Josefin Sans', sans-serif;
+          margin: 0;
+      }
+
+      .footer-distributed h3 span{
+          color:  lightseagreen;
+      }
+
+      /* Footer links */
+
+      .footer-distributed .footer-links{
+          color:  #ffffff;
+          margin: 20px 0 12px;
+          padding: 0;
+      }
+
+      .footer-distributed .footer-links a{
+          display:inline-block;
+          line-height: 1.8;
+          font-weight:400;
+          text-decoration: none;
+          color:  inherit;
+      }
+
+      .footer-distributed .footer-company-name{
+          color:  #222;
+          font-size: 14px;
+          font-weight: normal;
+          margin: 0;
+      }
+
+      /* Footer Center */
+
+      .footer-distributed .footer-center{
+          width: 35%;
+      }
+
+      .footer-distributed .footer-center i{
+          background-color:  #33383b;
+          color: #ffffff;
+          font-size: 25px;
+          width: 38px;
+          height: 38px;
+          border-radius: 50%;
+          text-align: center;
+          line-height: 42px;
+          margin: 10px 15px;
+          vertical-align: middle;
+      }
+
+      .footer-distributed .footer-center i.fa-envelope{
+          font-size: 17px;
+          line-height: 38px;
+      }
+
+      .footer-distributed .footer-center p{
+          display: inline-block;
+          color: #ffffff;
+      font-weight:400;
+          vertical-align: middle;
+          margin:0;
+      }
+
+      .footer-distributed .footer-center p span{
+          display:block;
+          font-weight: normal;
+          font-size:14px;
+          line-height:2;
+      }
+
+      .footer-distributed .footer-center p a{
+          color:  lightseagreen;
+          text-decoration: none;;
+      }
+
+      .footer-distributed .footer-links a:before {
+      content: "|";
+      font-weight:300;
+      font-size: 20px;
+      left: 0;
+      color: #fff;
+      display: inline-block;
+      padding-right: 5px;
+      }
+
+      .footer-distributed .footer-links .link-1:before {
+      content: none;
+      }
+
+      /* Footer Right */
+
+      .footer-distributed .footer-right{
+          width: 20%;
+      }
+
+      .footer-distributed .footer-company-about{
+          line-height: 20px;
+          color:  #92999f;
+          font-size: 13px;
+          font-weight: normal;
+          margin: 0;
+      }
+
+      .footer-distributed .footer-company-about span{
+          display: block;
+          color:  #ffffff;
+          font-size: 14px;
+          font-weight: bold;
+          margin-bottom: 20px;
+      }
+
+      .footer-distributed .footer-icons{
+          margin-top: 25px;
+      }
+
+      .footer-distributed .footer-icons a{
+          display: inline-block;
+          width: 35px;
+          height: 35px;
+          cursor: pointer;
+          background-color:  #33383b;
+          border-radius: 2px;
+
+          font-size: 20px;
+          color: #ffffff;
+          text-align: center;
+          line-height: 35px;
+
+          margin-right: 3px;
+          margin-bottom: 5px;
+      }
+
+      @media (max-width: 880px) {
+
+          .footer-distributed{
+              font: bold 14px sans-serif;
+          }
+
+          .footer-distributed .footer-left,
+          .footer-distributed .footer-center,
+          .footer-distributed .footer-right{
+              display: block;
+              width: 100%;
+              margin-bottom: 40px;
+              text-align: center;
+          }
+
+          .footer-distributed .footer-center i{
+              margin-left: 0;
+          }
+      }
+      .fticon-a {
+        text-decoration: none;
+        color: black;
+      }
+      /* nút lên top */
+      #imgnutlentop {
+          width: 20px;
+        }
+      #myBtn {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 30px;
+        z-index: 99;
+        font-size: 18px;
+        border: none;
+        outline: none;
+        background-color: black;
+        color: white;
+        cursor: pointer;
+        padding: 15px;
+        border-radius: 50%;
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+      }
+
+      #myBtn:hover {
+        background-color: black;
+      }
+
+  </style>    
+</head>
+<body><!-- nút công cụ -->
+    <header>
+        <div class="nut">
+          <span><button class="button type3"></button></span>
+      <!-- chữ cạnh nút công cụ -->
+          <div class="container-text">
+            <span class="container-text-span">Nội <br> thất</span>
+          </div>
+      <!-- nút contact -->
+          <div class="contact">
+            <button class="btn"><a class="btna" href='javascript:window.scrollTo(maxWidth,maxHeight)' title='Xuống cuối trang'>Liên hệ</a></button>
+          </div>
+        </div>
+    </header>
+    
+    <!-- trang trong -->
+    <div class="text1">
+      <img src="https://implements.jp/website/wp-content/uploads/2022/03/jicon20210823print-004-1024x683.jpeg" alt="đồ dùng bữa" />
+      <p class="text1">Với mong muốn mang lại cho mỗi người có trải nghiệm thoải mái và tiện lợi, chúng tôi cho ra đời sản phẩm đồ dùng ăn uống.</p><br>
+      <h2>THÔNG TIN SẢN PHẨM</h2>
+      <p>Chất liệu:sứ , gỗ , sắt, hủy tinh <br>Màu sắc:trắng/nâu <br>kiểu dáng: hiện đại , sang trọng , quý tộc<br>Quà tặng: , voucher trị giá 10.000đ<br><b>Giá: 50.000đ</b></p><br>
+      <h3>Hãy liên hệ chúng tôi để mua ngay!</h3>
+    </div>
+    <!-- chân trang -->
+    <footer class="footer-distributed">
+        <div class="footer-left">
+            <h3>Nội <span>thất</span></h3>
+            <p class="footer-links">
+                <a href="#" class="link-1">Trang chủ</a>
+            </p>
+            <p class="footer-company-name">by Nhom 2 © 2022</p>
+        </div>
+        <div class="footer-center">
+            <div>
+                <i class="fa fa-map-marker"></i>
+                <p><span>123 Nguyễn Trãi</span> Thanh Xuân, Hà Nội</p>
+            </div>
+    
+            <div>
+                <i class="fa fa-phone"></i>
+                <p>+84 91234567</p>
+            </div>
+    
+            <div>
+                <i class="fa fa-envelope"></i>
+                <p><a href="mailto:naryloan@gmail.com">naryloan@gmail.com</a></p>
+            </div>
+    
+        </div>
+        <div class="footer-right">
+            <p class="footer-company-about">
+                <span>Lời cảm ơn</span>Chúng tôi luôn muốn mang đến cho khách hàng trải nghiệm tuyệt vời nhất! Hãy đừng ngần ngại mà gọi ngay để nhận tư vấn miễn phí nhé!
+            </p>
+    
+            <div class="footer-icons">
+              <a class="fticon-a" href="https://www.facebook.com/"><b class="fa fa-facebook">F</b></a>
+              <a class="fticon-a" href="https://www.instagram.com/"><b class="fa fa-instagram">I</b></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        var maxWidth = (document.body.clientWidth);
+        var maxHeight = (document.body.clientHeight);
+    </script>
+    <!-- nút lên top -->
+    <button onclick="topFunction()" id="myBtn" title="Go to top"><img id="imgnutlentop" src="https://www.photosmile.vn/images/202203/24/photosmile.vn__final_21786277443895577_.jpg?act=63"/></button>
+
+    
+    <script>
+        var mybutton = document.getElementById("myBtn");
+        window.onscroll = function() {scrollFunction()};
+    
+        function scrollFunction() {
+          if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+          } else {
+            mybutton.style.display = "none";
+          }
+        }
+        function topFunction() {
+          document.body.scrollTop = 0;
+          document.documentElement.scrollTop = 0;
+        }
+    </script>
+</body>
+</html>
